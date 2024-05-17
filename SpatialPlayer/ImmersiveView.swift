@@ -8,6 +8,7 @@
 import AVKit
 import RealityKit
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ImmersiveView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
@@ -21,7 +22,9 @@ struct ImmersiveView: View {
                 print("No video URL selected")
                 return
             }
-            
+//            let url = URL(string: "http://192.168.100.160:5000/video/library_vp/vp/multivariant.m3u8")!
+////            let url = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/historic_planet_content_2023-10-26-3d-video/main.m3u8")!
+//            
             // Wrap access in a security scope
             isURLSecurityScoped = url.startAccessingSecurityScopedResource()
             
@@ -32,6 +35,13 @@ struct ImmersiveView: View {
                 print("Failed to get video info")
                 return
             }
+            
+            // TODO: For HLS video info, how do we get from the track?
+//            let videoInfo = VideoInfo()
+//            videoInfo.isSpatial = true
+//            videoInfo.size = CGSize(width: 2200, height: 2200)
+//            videoInfo.projectionType = CMProjectionType.rectangular
+//            videoInfo.horizontalFieldOfView = 71.59
 
             // NOTE: If you want to force a custom projection, horizontal field of view, etc. because
             // your media doesn't contain the correct metadata, you can do that here. For example:
@@ -47,6 +57,7 @@ struct ImmersiveView: View {
                 return
             }
             
+            // wrap logical player with UI interface
             videoMaterial = VideoMaterial(avPlayer: player)
             guard let videoMaterial else {
                 print("Failed to create video material")

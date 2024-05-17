@@ -23,9 +23,9 @@ struct VideoTools {
         videoWidth: Float, videoHeight: Float, zDistance: Float, fovDegrees: Float
     ) -> Float {
         let fovRadians = fovDegrees * .pi / 180.0
-        let halfWidthAtZDistance = zDistance * tan(fovRadians / 2.0)
+        let halfWidthAtZDistance = zDistance * tan(fovRadians / 2.0) // half of the total screen width
         let scaleFactor = 2.0 * halfWidthAtZDistance
-        return scaleFactor
+        return scaleFactor  // scale factor of width, the larger z is, the larger scale is
     }
     
     /// Generates a sphere mesh suitable for mapping an equirectangular video source.
@@ -171,6 +171,7 @@ struct VideoTools {
         var mesh: MeshResource?
         var transform: Transform?
         
+        // NOTE: how to define value for this zDistance
         let zDistance: Float = 50.0
         let horizontalFieldOfView = videoInfo.horizontalFieldOfView ?? 65.0 // reasonble default
         
@@ -196,6 +197,7 @@ struct VideoTools {
             let width: Float = 1.0
             let height: Float = Float(videoInfo.size.height / videoInfo.size.width)
             
+            // draw a plane lying on the floor
             mesh = await .generatePlane(width: width, depth: height)
             
             let scale = VideoTools.calculateScaleFactor(
@@ -203,8 +205,8 @@ struct VideoTools {
             
             transform = Transform(
                 scale: .init(x: scale, y: 1, z: scale),
-                rotation: .init(angle: Float.pi / 2, axis: .init(x: 1, y: 0, z: 0)),
-                translation: .init(x: 0, y: 0, z: -zDistance))
+                rotation: .init(angle: Float.pi / 2, axis: .init(x: 1, y: 0, z: 0)),  // let the plane rotate around x axis with counterclockwise 90deg
+                translation: .init(x: 0, y: 0, z: -zDistance))  // push the plane back via z axis with zDistance value, after rotation, the effect would look like translation on y axis
         }
         
         return (mesh: mesh!, transform: transform!)
