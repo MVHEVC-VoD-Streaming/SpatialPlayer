@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+protocol ReplayViewDelegate: AnyObject {
+    func didReplay()
+}
+
 struct ContentView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    weak var replayDelegate: ReplayViewDelegate?
     
     var body: some View {
         VStack {
@@ -23,13 +29,35 @@ struct ContentView: View {
                     .fixedSize()
                     .disabled(!viewModel.isSpatialVideoAvailable)
                     .padding()
+                Button("Replay") {
+                    replayDelegate?.didReplay()
+                }
             } else {
-                Text("Spatial Player").font(.title).padding()
-                Text("by Michael Swanson")
-                Link("https://blog.mikeswanson.com/spatial", destination: URL(string: "https://blog.mikeswanson.com/spatial")!)
-                Text("An example spatial video player for MV-HEVC video.\nIt doesn't do much, but I hope it gets you started.\nIf you build something with it, let me know!").padding()
+                Text("User Study on Spatial Video Experience").font(.title)
+                Text("by NU XR Lab").padding(.bottom)
+                
+                Text("Welcome! This study compares video formats.")
+                Text("You will watch 40 short video clips and rate each one.").padding(.bottom)
+                
+                VStack(alignment: .leading, content: {
+                    Text("Steps:")
+                        .font(.subheadline)
+                        .padding(.bottom, 5)
+                    
+                    Text("1. Watch Videos: 40 clips, 15 seconds each.")
+                        .padding(.bottom, 5)
+                    
+                    Text("2. Rate Each Video:")
+                        .padding(.bottom, 5)
+        
+                    Text("- Video Quality: 1 (Bad) to 5 (Excellent)")
+                        
+                    Text("- Depth Quality: 1 (No Depth) to 5 (Excellent)")
+                
+                    Text("- Overall Experience: 1 (Bad) to 5 (Excellent)")
+                })
             }
-            Button("Select Video", systemImage: "video.fill") {
+            Button("Start", systemImage: "play.fill") {
                 viewModel.isImmersiveSpaceShown = false
                 viewModel.isDocumentPickerPresented = true
             }
