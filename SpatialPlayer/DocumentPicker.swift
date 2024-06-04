@@ -33,15 +33,15 @@ struct DocumentPicker: UIViewControllerRepresentable {
         func documentPicker(
             _ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]
         ) {
-            
-//            let url = URL(string: "http://10.110.177.156:3000/video/test/spatial-video-by-vp.MOV?res=99")
             guard let selectedURL = urls.first else {
                 print("No document selected")
                 return
             }
             parent.viewModel.videoURL = selectedURL
+            parent.viewModel.currentVideoIndex = 0
+            parent.viewModel.videoURLPlaylist.append(selectedURL)
             parent.viewModel.isDocumentPickerPresented = false
-            parent.viewModel.isImmersiveSpaceShown = true
+//            parent.viewModel.isImmersiveSpaceShown = true
         }
     }
 }
