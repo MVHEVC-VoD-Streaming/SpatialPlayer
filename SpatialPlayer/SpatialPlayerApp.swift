@@ -16,7 +16,7 @@ struct SpatialPlayerApp: App {
         WindowGroup(id: "MainWindowGroup") {
             ContentView()
                 .environmentObject(viewModel)
-                .frame(width: 400, height: 200)
+                .frame(width: 600, height: 400)
         }.windowStyle(.plain)
 
 

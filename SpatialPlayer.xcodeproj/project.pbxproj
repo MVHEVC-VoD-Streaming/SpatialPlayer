@@ -19,6 +19,8 @@
 		CAFF34792C0FA992007FCDCB /* VideoPlaybackControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34782C0FA992007FCDCB /* VideoPlaybackControl.swift */; };
 		CAFF347D2C0FC1B3007FCDCB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF347C2C0FC1B3007FCDCB /* WelcomeView.swift */; };
 		CAFF347F2C0FC233007FCDCB /* VideoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF347E2C0FC233007FCDCB /* VideoPreviewView.swift */; };
+		CAFF34812C10D57A007FCDCB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34802C10D57A007FCDCB /* Models.swift */; };
+		CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34842C10E8AC007FCDCB /* EndingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		CAFF34782C0FA992007FCDCB /* VideoPlaybackControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackControl.swift; sourceTree = "<group>"; };
 		CAFF347C2C0FC1B3007FCDCB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		CAFF347E2C0FC233007FCDCB /* VideoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewView.swift; sourceTree = "<group>"; };
+		CAFF34802C10D57A007FCDCB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CAFF34842C10E8AC007FCDCB /* EndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +84,9 @@
 				4C6B90FC2B72E08000DF217E /* Info.plist */,
 				CAFF34782C0FA992007FCDCB /* VideoPlaybackControl.swift */,
 				CAFF347C2C0FC1B3007FCDCB /* WelcomeView.swift */,
+				CAFF34842C10E8AC007FCDCB /* EndingView.swift */,
 				CAFF347E2C0FC233007FCDCB /* VideoPreviewView.swift */,
+				CAFF34802C10D57A007FCDCB /* Models.swift */,
 			);
 			path = SpatialPlayer;
 			sourceTree = "<group>";
@@ -159,6 +165,8 @@
 				4C6B90F22B72E07F00DF217E /* ContentView.swift in Sources */,
 				4CDBB18B2B97A3AE0062E7CD /* CMProjectionType+String.swift in Sources */,
 				4C6B91052B72F9B900DF217E /* PlayerViewModel.swift in Sources */,
+				CAFF34812C10D57A007FCDCB /* Models.swift in Sources */,
+				CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */,
 				4C5B95782B967DEA003DD53C /* VideoTools.swift in Sources */,
 				CAFF34792C0FA992007FCDCB /* VideoPlaybackControl.swift in Sources */,
 				CAFF347D2C0FC1B3007FCDCB /* WelcomeView.swift in Sources */,

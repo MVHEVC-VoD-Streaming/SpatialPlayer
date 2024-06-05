@@ -27,6 +27,8 @@ struct ContentView: View {
                 EmptyView()
             case .RATING_VIEW:
                 WelcomeView()
+            case .ENDING_VIEW:
+                EndingView()
             }
         }
 //        .controlSize(.large)

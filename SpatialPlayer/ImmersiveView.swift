@@ -82,7 +82,13 @@ struct ImmersiveView: View {
                 DispatchQueue.main.async {
                     viewModel.isImmersiveSpaceShown = false
                     viewModel.isVideoPlaying = false
-                    viewModel.appView = AppView.VIDEO_PREVIEW
+                    if viewModel.hasNextVideo {
+                        viewModel.currentVideoIndex += 1
+                        viewModel.appView = AppView.VIDEO_PREVIEW
+                    } else {
+                        viewModel.appView = AppView.ENDING_VIEW
+                        print("Test complete, route to ending view")
+                    }
                 }
             }
             

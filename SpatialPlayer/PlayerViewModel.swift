@@ -13,6 +13,7 @@ enum AppView: String {
     case VIDEO_PREVIEW = "VIDEO_PREVIEW"
     case IMMERSIVE_VIEW = "IMMERSIVE_VIEW"
     case RATING_VIEW = "RATING_VIEW"
+    case ENDING_VIEW = "ENDING_VIEW"
 }
 
 class PlayerViewModel: ObservableObject {
@@ -26,8 +27,32 @@ class PlayerViewModel: ObservableObject {
     @Published var appView: AppView = AppView.WELCOME
     @Published var currentVideoIndex = 0
     @Published var videoURLPlaylist: [URL] = []
+    @Published var sessionData: SessionData?
+    @Published var serverDomain: String = "http://192.168.1.215:3000"
     
     var isStereoEnabled: Bool {
         isSpatialVideoAvailable && shouldPlayInStereo
+    }
+    
+    var playlist: [PlaylistItem] {
+        if let sessionData = self.sessionData {
+            return sessionData.data.playlist
+        }
+        return []
+    }
+    
+    var currentVideo: PlaylistItem? {
+        if self.currentVideoIndex >= 0 && self.currentVideoIndex < self.playlist.count {
+            return self.playlist[self.currentVideoIndex]
+        }
+        return nil
+    }
+    
+    var hasNextVideo: Bool {
+        if self.playlist.count == 0 {
+            return false
+        }
+        let nextIndex = self.currentVideoIndex + 1
+        return nextIndex >= 0 && nextIndex < self.playlist.count
     }
 }
