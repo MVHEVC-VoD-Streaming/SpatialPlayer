@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct CurrentVideoView: View {
+struct VideoPlaybackControl: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+        }
     }
 }
 
-#Preview {
-    CurrentVideoView()
-}
+//#Preview {
+//    VideoPlaybackControl()
+//}

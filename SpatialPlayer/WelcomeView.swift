@@ -37,9 +37,7 @@ struct WelcomeView: View {
             })
             
             Button("Start", systemImage: "play.fill") {
-                viewModel.appView = AppView.VIDEO_PREVIEW
                 viewModel.isDocumentPickerPresented = true
-                
             }
             .padding()
             .sheet(isPresented: $viewModel.isDocumentPickerPresented) {

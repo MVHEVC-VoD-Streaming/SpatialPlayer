@@ -14,17 +14,16 @@ struct VideoPreviewView: View {
     var body: some View {
         VStack {
             Text("Current Video: \(viewModel.currentVideoIndex + 1) / \(viewModel.videoURLPlaylist.count)").bold()
-            Button("Start", systemImage: "play.fill") {
-                viewModel.isImmersiveSpaceShown = false
-                viewModel.isDocumentPickerPresented = true
+            
+            Button("Play", systemImage: "play.fill") {
+                viewModel.appView = AppView.IMMERSIVE_VIEW
+                viewModel.isImmersiveSpaceShown = true
             }
             .padding()
-            .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
-                DocumentPicker()
-            }
             
             Button("Quit") {
                 viewModel.appView = AppView.WELCOME
+                viewModel.isImmersiveSpaceShown = false
                 // TODO: clean up logic
             }
         }

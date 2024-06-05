@@ -15,7 +15,8 @@ struct ImmersiveView: View {
     @State private var player: AVPlayer = AVPlayer()
     @State private var isURLSecurityScoped: Bool = false
     @State private var videoMaterial: VideoMaterial?
-    
+    @Environment(\.openWindow) var openWindow
+
     var body: some View {
         RealityView { content in
             guard let url = viewModel.videoURL else {
@@ -70,8 +71,19 @@ struct ImmersiveView: View {
             videoEntity.transform = transform
             content.add(videoEntity)
             
+            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: .main) { _ in
+                print("Video playback ended")
+                // Ensure the update happens in main thread
+                DispatchQueue.main.async {
+                    viewModel.isImmersiveSpaceShown = false
+                    viewModel.isVideoPlaying = false
+                    viewModel.appView = AppView.VIDEO_PREVIEW
+                }
+            }
+            
             player.replaceCurrentItem(with: playerItem)
             player.play()
+            viewModel.isVideoPlaying = true
         }
         .onDisappear {
             if isURLSecurityScoped, let url = viewModel.videoURL {

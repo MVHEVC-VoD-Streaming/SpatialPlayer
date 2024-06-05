@@ -17,19 +17,19 @@ struct ContentView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     var body: some View {
-        VStack {
+        ZStack {
             switch viewModel.appView {
             case .WELCOME:
                 WelcomeView()
             case .VIDEO_PREVIEW:
                 VideoPreviewView()
             case .IMMERSIVE_VIEW:
-                WelcomeView()
+                EmptyView()
             case .RATING_VIEW:
                 WelcomeView()
             }
         }
-        .controlSize(.large)
+//        .controlSize(.large)
         .onChange(of: viewModel.isImmersiveSpaceShown) { _, newValue in
             Task {
                 if newValue {
