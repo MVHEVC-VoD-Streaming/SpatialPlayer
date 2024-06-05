@@ -11,7 +11,7 @@ struct WelcomeView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
     
     func fetchSessionData() {
-        guard let url = URL(string: "http://192.168.1.215:3000/api/session/create_session") else {
+        guard let url = URL(string: "\(viewModel.serverDomain)/api/session/create_session") else {
             print("Invalid URL")
             return
         }
@@ -44,6 +44,7 @@ struct WelcomeView: View {
                 let decodedData = try JSONDecoder().decode(SessionData.self, from: data)
                 DispatchQueue.main.async {
                     viewModel.sessionData = decodedData
+                    viewModel.appView = AppView.VIDEO_PREVIEW
                 }
                 print("Decode data successfully")
             } catch {

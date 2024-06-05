@@ -27,22 +27,27 @@ struct ImmersiveView: View {
 ////            let url = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/historic_planet_content_2023-10-26-3d-video/main.m3u8")!
 //            
             // Wrap access in a security scope
-            isURLSecurityScoped = url.startAccessingSecurityScopedResource()
+//            isURLSecurityScoped = url.startAccessingSecurityScopedResource()
             
             let asset = AVURLAsset(url: url)
             let playerItem = AVPlayerItem(asset: asset)
             
-            guard let videoInfo = await VideoTools.getVideoInfo(asset: asset) else {
-                print("Failed to get video info")
-                return
-            }
+//            guard let videoInfo = await VideoTools.getVideoInfo(asset: asset) else {
+//                print("Failed to get video info")
+//                return
+//            }
             
             // TODO: For HLS video info, how do we get from the track?
-//            let videoInfo = VideoInfo()
-//            videoInfo.isSpatial = true
-//            videoInfo.size = CGSize(width: 2200, height: 2200)
-//            videoInfo.projectionType = CMProjectionType.rectangular
-//            videoInfo.horizontalFieldOfView = 71.59
+            let videoInfo = VideoInfo()
+            videoInfo.isSpatial = false
+            if let videoType = viewModel.currentVideo?.type {
+                if videoType == "stereo" {
+                    videoInfo.isSpatial = true
+                }
+            }
+            videoInfo.size = CGSize(width: 2200, height: 2200)
+            videoInfo.projectionType = CMProjectionType.rectangular
+            videoInfo.horizontalFieldOfView = 71.59
 
             // NOTE: If you want to force a custom projection, horizontal field of view, etc. because
             // your media doesn't contain the correct metadata, you can do that here. For example:
