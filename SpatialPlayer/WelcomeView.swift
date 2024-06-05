@@ -9,6 +9,51 @@ import SwiftUI
 
 struct WelcomeView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
+    
+    func fetchSessionData() {
+        guard let url = URL(string: "http://192.168.1.215:3000/api/session/create_session") else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let requestData: [String: Any] = [:]
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestData, options: [])
+        } catch {
+            print("Failed to serialize request data: \(error)")
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error fetching session data: \(error)")
+                return
+            }
+
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+
+            do {
+                let decodedData = try JSONDecoder().decode(SessionData.self, from: data)
+                DispatchQueue.main.async {
+                    viewModel.sessionData = decodedData
+                }
+                print("Decode data successfully")
+            } catch {
+                print("Failed to decode JSON response: \(error)")
+            }
+        }
+
+        task.resume()
+    }
+    
 
     var body: some View {
         VStack {
@@ -37,19 +82,20 @@ struct WelcomeView: View {
             })
             
             Button("Start", systemImage: "play.fill") {
-                viewModel.isDocumentPickerPresented = true
+//                viewModel.isDocumentPickerPresented = true
+                fetchSessionData()
             }
             .padding()
-            .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
-                DocumentPicker()
-            }
+//            .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
+//                DocumentPicker()
+//            }
         }
     }
 }
 
-//struct WelcomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WelcomeView()
-//            .environmentObject(PlayerViewModel())
-//    }
-//}
+struct WelcomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        WelcomeView()
+            .environmentObject(PlayerViewModel())
+    }
+}
