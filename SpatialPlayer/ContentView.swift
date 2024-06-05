@@ -26,7 +26,7 @@ struct ContentView: View {
             case .IMMERSIVE_VIEW:
                 EmptyView()
             case .RATING_VIEW:
-                WelcomeView()
+                RatingView()
             case .ENDING_VIEW:
                 EndingView()
             }

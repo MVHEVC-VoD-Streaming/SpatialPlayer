@@ -26,6 +26,7 @@ class PlayerViewModel: ObservableObject {
     @Published var shouldPlayInStereo: Bool = true
     @Published var appView: AppView = AppView.WELCOME
     @Published var currentVideoIndex = 0
+    @Published var ratingVideoIndex = 0
     @Published var videoURLPlaylist: [URL] = []
     @Published var sessionData: SessionData?
     @Published var serverDomain: String = "http://192.168.1.215:3000"
