@@ -195,7 +195,11 @@ struct VideoTools {
 
             // Assume rectilinear
             let width: Float = 1.0
-            let height: Float = Float(videoInfo.size.height / videoInfo.size.width)
+//            let height: Float = Float(videoInfo.size.height / videoInfo.size.width)
+            // NOTE: Fixing the size of the window for user study
+            let FIXED_WIDTH = 4096
+            let FIXED_HEIGHT = 4096
+            let height: Float = Float(FIXED_HEIGHT / FIXED_WIDTH)
             
             // draw a plane lying on the floor
             mesh = await .generatePlane(width: width, depth: height)
