@@ -14,6 +14,59 @@ struct WelcomeView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     
+    var body: some View {
+        VStack(alignment: .center, content: {
+            VStack(alignment: .center, content: {
+                Text("User Study on Spatial Video Experience").font(.title)
+                Text("by Spatial Internet Research Group").padding(.bottom)
+            })
+            
+            VStack(alignment: .leading, content: {
+                Text("Welcome! This study aims to compare viewing experience with mono and stereo videos across different quality levels on Vision Pro.")
+                
+                Text("You will watch 40 short video clips and rate each one.").padding(.bottom)
+                
+                Text("Steps:")
+                    .padding(.bottom, 5)
+                
+                Text("1. Watch Videos: 40 clips, 15 seconds each.")
+                    .padding(.bottom, 5)
+                
+                Text("2. Rate Each Video:")
+                    .padding(.bottom, 5)
+                
+                Text("- Video Quality: 1 (Bad) to 5 (Excellent)")
+                
+                Text("- Depth Quality: 1 (No Depth) to 5 (Excellent)")
+                
+                Text("- Overall Experience: 1 (Bad) to 5 (Excellent)")
+            })
+                .padding()
+            
+            HStack {
+                Button(action: {
+                       showResumeModal = true
+                   }) {
+                       Text("or Resume a session")
+                   }
+                   .sheet(isPresented: $showResumeModal, content: {
+                       ResumeSessionView(
+                          sessionId: $sessionId,
+                          showAlert: $showAlert,
+                          alertMessage: $alertMessage,
+                          showResumeModal: $showResumeModal
+                      )
+                   })
+                
+                
+                Button("Start", systemImage: "play.fill") {
+    //                viewModel.isDocumentPickerPresented = true
+                    fetchSessionData()
+                }
+            }.padding(.top)
+        }).frame(width: 450)
+    }
+    
     private func fetchSessionData() {
         guard let url = URL(string: "\(viewModel.serverDomain)/api/session/create_session") else {
             print("Invalid URL")
@@ -57,56 +110,6 @@ struct WelcomeView: View {
         }
 
         task.resume()
-    }
-    
-
-    var body: some View {
-        VStack {
-            Text("User Study on Spatial Video Experience").font(.title)
-            Text("by NU XR Lab").padding(.bottom)
-            
-            Text("Welcome! This study compares video formats.")
-            Text("You will watch 40 short video clips and rate each one.").padding(.bottom)
-            
-            VStack(alignment: .leading, content: {
-                Text("Steps:")
-                    .font(.subheadline)
-                    .padding(.bottom, 5)
-                
-                Text("1. Watch Videos: 40 clips, 15 seconds each.")
-                    .padding(.bottom, 5)
-                
-                Text("2. Rate Each Video:")
-                    .padding(.bottom, 5)
-                
-                Text("- Video Quality: 1 (Bad) to 5 (Excellent)")
-                
-                Text("- Depth Quality: 1 (No Depth) to 5 (Excellent)")
-                
-                Text("- Overall Experience: 1 (Bad) to 5 (Excellent)")
-            })
-            
-            Button("Start", systemImage: "play.fill") {
-//                viewModel.isDocumentPickerPresented = true
-                fetchSessionData()
-            }
-            .padding()
-            
-            Button(action: {
-                   showResumeModal = true
-               }) {
-                   Text("or Resume a session")
-               }
-               .padding()
-               .sheet(isPresented: $showResumeModal, content: {
-                   ResumeSessionView(
-                      sessionId: $sessionId,
-                      showAlert: $showAlert,
-                      alertMessage: $alertMessage,
-                      showResumeModal: $showResumeModal
-                  )
-               })
-        }
     }
 }
 

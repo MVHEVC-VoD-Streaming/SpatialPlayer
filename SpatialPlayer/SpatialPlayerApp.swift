@@ -17,7 +17,10 @@ struct SpatialPlayerApp: App {
             ContentView()
                 .environmentObject(viewModel)
                 .frame(minWidth: 800, minHeight: 400)
-        }.windowStyle(.plain)
+                .environment(\.titleFont, .system(size: 32, weight: .bold))
+                .environment(\.contentFont, .system(size: 26))
+        }
+//        .windowStyle(.plain)
         .windowResizability(.automatic)
 
 

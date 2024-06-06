@@ -23,6 +23,7 @@
 		CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34842C10E8AC007FCDCB /* EndingView.swift */; };
 		CAFF34892C10EE8A007FCDCB /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34882C10EE8A007FCDCB /* RatingView.swift */; };
 		CAFF348B2C116086007FCDCB /* ResumeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF348A2C116086007FCDCB /* ResumeSessionView.swift */; };
+		CAFF348D2C1211D2007FCDCB /* FontConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF348C2C1211D2007FCDCB /* FontConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		CAFF34842C10E8AC007FCDCB /* EndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingView.swift; sourceTree = "<group>"; };
 		CAFF34882C10EE8A007FCDCB /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		CAFF348A2C116086007FCDCB /* ResumeSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSessionView.swift; sourceTree = "<group>"; };
+		CAFF348C2C1211D2007FCDCB /* FontConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				CAFF34802C10D57A007FCDCB /* Models.swift */,
 				CAFF34882C10EE8A007FCDCB /* RatingView.swift */,
 				CAFF348A2C116086007FCDCB /* ResumeSessionView.swift */,
+				CAFF348C2C1211D2007FCDCB /* FontConfig.swift */,
 			);
 			path = SpatialPlayer;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */,
 				4C5B95782B967DEA003DD53C /* VideoTools.swift in Sources */,
 				CAFF34792C0FA992007FCDCB /* VideoPlaybackControl.swift in Sources */,
+				CAFF348D2C1211D2007FCDCB /* FontConfig.swift in Sources */,
 				CAFF347D2C0FC1B3007FCDCB /* WelcomeView.swift in Sources */,
 				CAFF347F2C0FC233007FCDCB /* VideoPreviewView.swift in Sources */,
 				4CDBB1892B97A21B0062E7CD /* VideoInfo.swift in Sources */,
