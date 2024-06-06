@@ -13,7 +13,7 @@ struct VideoPreviewView: View {
     
     var currentVideoURL: URL? {
         if let sessionData = viewModel.sessionData {
-            let item = sessionData.data.playlist[viewModel.currentVideoIndex]
+            let item = sessionData.playlist[viewModel.currentVideoIndex]
             
             return URL(string: "\(viewModel.serverDomain)\(item.url)")
         }

@@ -9,8 +9,12 @@ import SwiftUI
 
 struct WelcomeView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
+    @State private var showResumeModal = false
+    @State private var sessionId: String = ""
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
-    func fetchSessionData() {
+    private func fetchSessionData() {
         guard let url = URL(string: "\(viewModel.serverDomain)/api/session/create_session") else {
             print("Invalid URL")
             return
@@ -41,9 +45,9 @@ struct WelcomeView: View {
             }
 
             do {
-                let decodedData = try JSONDecoder().decode(SessionData.self, from: data)
+                let decodedData = try JSONDecoder().decode(SessionData<SessionDetails>.self, from: data)
                 DispatchQueue.main.async {
-                    viewModel.sessionData = decodedData
+                    viewModel.sessionData = decodedData.data
                     viewModel.appView = AppView.VIDEO_PREVIEW
                 }
                 print("Decode data successfully")
@@ -87,9 +91,21 @@ struct WelcomeView: View {
                 fetchSessionData()
             }
             .padding()
-//            .sheet(isPresented: $viewModel.isDocumentPickerPresented) {
-//                DocumentPicker()
-//            }
+            
+            Button(action: {
+                   showResumeModal = true
+               }) {
+                   Text("or Resume a session")
+               }
+               .padding()
+               .sheet(isPresented: $showResumeModal, content: {
+                   ResumeSessionView(
+                      sessionId: $sessionId,
+                      showAlert: $showAlert,
+                      alertMessage: $alertMessage,
+                      showResumeModal: $showResumeModal
+                  )
+               })
         }
     }
 }

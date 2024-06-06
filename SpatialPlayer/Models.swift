@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct SessionData: Codable, CustomStringConvertible {
+struct SessionData<T: Codable & CustomStringConvertible>: Codable, CustomStringConvertible {
     let code: Int
-    let data: SessionDetails
+    let data: T
     let message: String
 
     var description: String {
@@ -18,6 +18,23 @@ struct SessionData: Codable, CustomStringConvertible {
         Message: \(message)
         Data:
         \(data.description)
+        """
+    }
+}
+
+struct SessionResumeData: Codable, CustomStringConvertible {
+    let lastRatedVideoIndex: Int
+    let session: SessionDetails
+    
+    enum CodingKeys: String, CodingKey {
+        case lastRatedVideoIndex = "last_rated_video_index"
+        case session
+    }
+    
+    var description: String {
+        return """
+        lastRatedVideoIndex: \(lastRatedVideoIndex)
+        session: \(session)
         """
     }
 }

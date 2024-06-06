@@ -28,8 +28,9 @@ class PlayerViewModel: ObservableObject {
     @Published var currentVideoIndex = 0
     @Published var ratingVideoIndex = 0
     @Published var videoURLPlaylist: [URL] = []
-    @Published var sessionData: SessionData?
+    @Published var sessionData: SessionDetails?
     @Published var serverDomain: String = "http://192.168.1.215:3000"
+//    @Published var serverDomain: String = "http://192.168.100.160:3000"
     
     var isStereoEnabled: Bool {
         isSpatialVideoAvailable && shouldPlayInStereo
@@ -37,7 +38,7 @@ class PlayerViewModel: ObservableObject {
     
     var playlist: [PlaylistItem] {
         if let sessionData = self.sessionData {
-            return sessionData.data.playlist
+            return sessionData.playlist
         }
         return []
     }

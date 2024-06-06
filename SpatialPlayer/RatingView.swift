@@ -10,11 +10,15 @@ import SwiftUI
 struct StarRatingView: View {
     @Binding var rating: Int?
     var maxRating: Int = 5
+    var starSize: CGFloat = 60 // Adjust the size of the stars
 
     var body: some View {
         HStack {
             ForEach(1...maxRating, id: \.self) { star in
                 Image(systemName: star <= (rating ?? 0) ? "star.fill" : "star")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: starSize, height: starSize)
                     .foregroundColor(star <= (rating ?? 0) ? .yellow : .gray)
                     .onTapGesture {
                         rating = star
@@ -33,12 +37,11 @@ struct RatingView: View {
     @State private var alertMessage = ""
 
     var currentVideoId: String? {
-        return "basketball@480x480-1M.left.mov"
-//        if let sessionData = viewModel.sessionData {
-//            let item = sessionData.data.playlist[viewModel.currentVideoIndex]
-//            return item.id
-//        }
-//        return nil
+        if let sessionData = viewModel.sessionData {
+            let item = sessionData.playlist[viewModel.currentVideoIndex]
+            return item.id
+        }
+        return nil
     }
 
     var body: some View {
@@ -98,12 +101,11 @@ struct RatingView: View {
             return
         }
 
-        let sessionId: String = "1717601295"
-//        guard let sessionId = viewModel.sessionData?.data.id else {
-//            alertMessage = "Failed to get session id"
-//            showAlert = true
-//            return
-//        }
+        guard let sessionId = viewModel.sessionData?.id else {
+            alertMessage = "Failed to get session id"
+            showAlert = true
+            return
+        }
 
         let scores: [String: [String: Int]] = [
             videoId: [
@@ -181,10 +183,10 @@ struct RatingView: View {
     }
 }
 
-struct RatingView_Previews: PreviewProvider {
-    static var previews: some View {
-        RatingView().environmentObject(PlayerViewModel())
-            .frame(width: 400, height: 300)
-    }
-}
+//struct RatingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RatingView().environmentObject(PlayerViewModel())
+//            .frame(width: 400, height: 300)
+//    }
+//}
 

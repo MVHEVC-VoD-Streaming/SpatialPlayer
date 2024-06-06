@@ -22,6 +22,7 @@
 		CAFF34812C10D57A007FCDCB /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34802C10D57A007FCDCB /* Models.swift */; };
 		CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34842C10E8AC007FCDCB /* EndingView.swift */; };
 		CAFF34892C10EE8A007FCDCB /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34882C10EE8A007FCDCB /* RatingView.swift */; };
+		CAFF348B2C116086007FCDCB /* ResumeSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF348A2C116086007FCDCB /* ResumeSessionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		CAFF34802C10D57A007FCDCB /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CAFF34842C10E8AC007FCDCB /* EndingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingView.swift; sourceTree = "<group>"; };
 		CAFF34882C10EE8A007FCDCB /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		CAFF348A2C116086007FCDCB /* ResumeSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeSessionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				CAFF347E2C0FC233007FCDCB /* VideoPreviewView.swift */,
 				CAFF34802C10D57A007FCDCB /* Models.swift */,
 				CAFF34882C10EE8A007FCDCB /* RatingView.swift */,
+				CAFF348A2C116086007FCDCB /* ResumeSessionView.swift */,
 			);
 			path = SpatialPlayer;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				4CDBB18B2B97A3AE0062E7CD /* CMProjectionType+String.swift in Sources */,
 				4C6B91052B72F9B900DF217E /* PlayerViewModel.swift in Sources */,
 				CAFF34812C10D57A007FCDCB /* Models.swift in Sources */,
+				CAFF348B2C116086007FCDCB /* ResumeSessionView.swift in Sources */,
 				CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */,
 				4C5B95782B967DEA003DD53C /* VideoTools.swift in Sources */,
 				CAFF34792C0FA992007FCDCB /* VideoPlaybackControl.swift in Sources */,
