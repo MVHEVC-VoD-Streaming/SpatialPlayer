@@ -16,30 +16,34 @@ struct ImmersiveView: View {
     @State private var isURLSecurityScoped: Bool = false
     @State private var videoMaterial: VideoMaterial?
     @Environment(\.openWindow) var openWindow
-
+    
     var body: some View {
         RealityView { content in
             guard let url = viewModel.videoURL else {
                 print("No video URL selected")
                 return
             }
-//            let url = URL(string: "http://192.168.100.160:5000/video/library_vp/vp/multivariant.m3u8")!
-////            let url = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/historic_planet_content_2023-10-26-3d-video/main.m3u8")!
-//            
+            //            let url = URL(string: "http://192.168.100.160:5000/video/library_vp/vp/multivariant.m3u8")!
+            ////            let url = URL(string: "https://devstreaming-cdn.apple.com/videos/streaming/examples/historic_planet_content_2023-10-26-3d-video/main.m3u8")!
+            //
             // Wrap access in a security scope
-//            isURLSecurityScoped = url.startAccessingSecurityScopedResource()
+            //            isURLSecurityScoped = url.startAccessingSecurityScopedResource()
             
             let asset = AVURLAsset(url: url)
             let playerItem = AVPlayerItem(asset: asset)
             
-//            guard let videoInfo = await VideoTools.getVideoInfo(asset: asset) else {
-//                print("Failed to get video info")
-//                return
-//            }
+            //            guard let videoInfo = await VideoTools.getVideoInfo(asset: asset) else {
+            //                print("Failed to get video info")
+            //                return
+            //            }
             
             // TODO: For HLS video info, how do we get from the track?
             let videoInfo = VideoInfo()
             videoInfo.isSpatial = false
+            if viewModel.isTutorial {
+                // Hard code the isSpatialVideoAvailable for demo video
+                videoInfo.isSpatial = true
+            }
             if let videoType = viewModel.currentVideo?.type {
                 if videoType == "stereo" {
                     videoInfo.isSpatial = true
@@ -48,13 +52,13 @@ struct ImmersiveView: View {
             videoInfo.size = CGSize(width: 2200, height: 2200)
             videoInfo.projectionType = CMProjectionType.rectangular
             videoInfo.horizontalFieldOfView = 71.59
-
+            
             // NOTE: If you want to force a custom projection, horizontal field of view, etc. because
             // your media doesn't contain the correct metadata, you can do that here. For example:
             //
             // videoInfo.projectionType = .equirectangular
             // videoInfo.horizontalFieldOfView = 360.0
-
+            
             viewModel.videoInfo = videoInfo
             viewModel.isSpatialVideoAvailable = videoInfo.isSpatial
             
@@ -76,14 +80,25 @@ struct ImmersiveView: View {
             videoEntity.transform = transform
             content.add(videoEntity)
             
-            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: .main) { _ in
+            NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerItem, queue: .main) { [weak playerItem] _ in
                 print("Video playback ended")
+                
+                NotificationCenter.default.removeObserver(
+                    self,
+                    name: .AVPlayerItemDidPlayToEndTime,
+                    object: playerItem
+                )
+                
                 // Ensure the update happens in main thread
                 DispatchQueue.main.async {
                     viewModel.isImmersiveSpaceShown = false
                     viewModel.isVideoPlaying = false
-                    viewModel.ratingVideoIndex = viewModel.currentVideoIndex
-                    viewModel.appView = AppView.RATING_VIEW
+                    if viewModel.isTutorial {
+                        viewModel.appView = AppView.TUTORIAL
+                    } else {
+                        viewModel.ratingVideoIndex = viewModel.currentVideoIndex
+                        viewModel.appView = AppView.RATING_VIEW
+                    }
                 }
             }
             
@@ -95,6 +110,8 @@ struct ImmersiveView: View {
             if isURLSecurityScoped, let url = viewModel.videoURL {
                 url.stopAccessingSecurityScopedResource()
             }
+            player.pause()
+            player.replaceCurrentItem(with: nil)
         }
         .onChange(of: viewModel.shouldPlayInStereo) { _, newValue in
             updateStereoMode()
