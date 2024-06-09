@@ -21,6 +21,8 @@ struct ContentView: View {
             switch viewModel.appView {
             case .WELCOME:
                 WelcomeView()
+            case .TUTORIAL:
+                TutorialView()
             case .VIDEO_PREVIEW:
                 VideoPreviewView()
             case .IMMERSIVE_VIEW:

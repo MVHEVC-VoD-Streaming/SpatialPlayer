@@ -43,11 +43,24 @@ struct WelcomeView: View {
             })
                 .padding()
             
-            HStack {
+            VStack {
+                 Button(action: {
+                     viewModel.appView = AppView.TUTORIAL
+                 }, label: {
+                     Text("Tutorial")
+                 })
+                
+                Button("Start", systemImage: "play.fill") {
+    //                viewModel.isDocumentPickerPresented = true
+                    fetchSessionData()
+                }             
+                .padding(.top)
+
+                
                 Button(action: {
                        showResumeModal = true
                    }) {
-                       Text("or Resume a session")
+                       Text("or Resume")
                    }
                    .sheet(isPresented: $showResumeModal, content: {
                        ResumeSessionView(
@@ -57,12 +70,8 @@ struct WelcomeView: View {
                           showResumeModal: $showResumeModal
                       )
                    })
+                   .padding(.top)
                 
-                
-                Button("Start", systemImage: "play.fill") {
-    //                viewModel.isDocumentPickerPresented = true
-                    fetchSessionData()
-                }
             }.padding(.top)
         }).frame(width: 450)
     }

@@ -10,6 +10,7 @@ import Foundation
 
 enum AppView: String {
     case WELCOME = "WELCOME"
+    case TUTORIAL = "TUTORIAL"
     case VIDEO_PREVIEW = "VIDEO_PREVIEW"
     case IMMERSIVE_VIEW = "IMMERSIVE_VIEW"
     case RATING_VIEW = "RATING_VIEW"
@@ -21,6 +22,7 @@ class PlayerViewModel: ObservableObject {
     @Published var videoInfo: VideoInfo = VideoInfo()
     @Published var isImmersiveSpaceShown: Bool = false
     @Published var isVideoPlaying: Bool = false
+    @Published var isTutorial: Bool = false
     @Published var isDocumentPickerPresented: Bool = false
     @Published var isSpatialVideoAvailable: Bool = false
     @Published var shouldPlayInStereo: Bool = true
@@ -29,8 +31,9 @@ class PlayerViewModel: ObservableObject {
     @Published var ratingVideoIndex = 0
     @Published var videoURLPlaylist: [URL] = []
     @Published var sessionData: SessionDetails?
-    @Published var serverDomain: String = "http://192.168.1.215:3000"
+//    @Published var serverDomain: String = "http://192.168.1.215:3000"
 //    @Published var serverDomain: String = "http://192.168.100.160:3000"
+    @Published var serverDomain: String = "http://10.0.0.184:3000"
     
     var isStereoEnabled: Bool {
         isSpatialVideoAvailable && shouldPlayInStereo

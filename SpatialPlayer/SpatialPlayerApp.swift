@@ -20,7 +20,7 @@ struct SpatialPlayerApp: App {
                 .environment(\.titleFont, .system(size: 32, weight: .bold))
                 .environment(\.contentFont, .system(size: 26))
         }
-//        .windowStyle(.plain)
+        .windowStyle(.plain)
         .windowResizability(.automatic)
 
 
