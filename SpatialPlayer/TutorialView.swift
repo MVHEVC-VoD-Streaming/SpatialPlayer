@@ -13,7 +13,10 @@ struct TutorialView: View {
     @State private var alertMessage = ""
     
     var currentVideoURL: URL? {
-        return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/tellurion.mov")
+        if !viewModel.isTutorialPlayBestQuality {
+            return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/kitchen/kitchen@480x480-1M.mov")
+        }
+        return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/kitchen/kitchen@2160x2160-30M.mov")
     }
     
     var body: some View {
@@ -26,16 +29,19 @@ struct TutorialView: View {
             Text("Spatial video is a new way to record and view your videos in 3D. This tutorial will help you understand the difference between mono and spatial videos.")
                 .padding(.bottom, 10)
             
-            Text("You can switch the stereoscopic effect on and off using the switch below. Play the demo video with the selected stereo settings. When you're done, click the Finish button to return to the home screen.")
+            Text("You can switch the stereoscopic effect as well as the video quality on and off using the switches below. Play the demo video with the selected stereo settings. When you're done, click the Finish button to return to the home screen.")
                 .padding(.bottom, 20)
+            
             
             Toggle(isOn: $viewModel.shouldPlayInStereo) {
                 Text(viewModel.shouldPlayInStereo ? "Stereo Mode: On" : "Stereo Mode: Off")
             }
-            .frame(width: 200)
-            .padding()
             
-            HStack {
+            Toggle(isOn: $viewModel.isTutorialPlayBestQuality) {
+                Text(viewModel.isTutorialPlayBestQuality ? "Quality: Best" : "Quality: Worst")
+            }
+            
+            HStack(content: {
                 Button(action: playDemoVideo) {
                     HStack {
                         Image(systemName: "play.fill")
@@ -49,6 +55,10 @@ struct TutorialView: View {
                         .font(.title2)
                 }
             }
+            )
+            .padding(.top)
+            .padding(.bottom)
+            .frame(maxWidth: .infinity)
         }
         .frame(width: 400)
     }

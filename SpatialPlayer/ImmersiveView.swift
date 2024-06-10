@@ -123,5 +123,6 @@ struct ImmersiveView: View {
             videoMaterial.controller.preferredViewingMode =
             viewModel.isStereoEnabled ? .stereo : .mono
         }
+        print("viewModel.isStereoEnabled: \(viewModel.isStereoEnabled)")
     }
 }

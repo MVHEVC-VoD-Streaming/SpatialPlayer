@@ -175,6 +175,10 @@ struct VideoTools {
         let zDistance: Float = 50.0
         let horizontalFieldOfView = videoInfo.horizontalFieldOfView ?? 65.0 // reasonble default
         
+        print("Make Video Mesh: ")
+        print("--- zDistance: \(zDistance)")
+        print("--- horizontalFieldOfView: \(horizontalFieldOfView)")
+        
         if videoInfo.projectionType == .equirectangular ||
             videoInfo.projectionType == .halfEquirectangular {
             
@@ -195,17 +199,21 @@ struct VideoTools {
 
             // Assume rectilinear
             let width: Float = 1.0
-//            let height: Float = Float(videoInfo.size.height / videoInfo.size.width)
-            // NOTE: Fixing the size of the window for user study
-            let FIXED_WIDTH = 4096
-            let FIXED_HEIGHT = 4096
-            let height: Float = Float(FIXED_HEIGHT / FIXED_WIDTH)
+            let height: Float = Float(videoInfo.size.height / videoInfo.size.width)
+//             NOTE: Fixing the size of the window for user study
+//            let FIXED_WIDTH = 4096
+//            let FIXED_HEIGHT = 4096
+//            let height: Float = Float(FIXED_HEIGHT / FIXED_WIDTH)
+            print("--- width: \(width)")
+            print("--- height: \(height)")
             
             // draw a plane lying on the floor
             mesh = await .generatePlane(width: width, depth: height)
             
             let scale = VideoTools.calculateScaleFactor(
                 videoWidth: width, videoHeight: height, zDistance: zDistance, fovDegrees: horizontalFieldOfView)
+            
+            print("--- scale: \(scale)")
             
             transform = Transform(
                 scale: .init(x: scale, y: 1, z: scale),

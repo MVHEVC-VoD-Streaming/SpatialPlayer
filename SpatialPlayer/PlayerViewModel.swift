@@ -23,6 +23,7 @@ class PlayerViewModel: ObservableObject {
     @Published var isImmersiveSpaceShown: Bool = false
     @Published var isVideoPlaying: Bool = false
     @Published var isTutorial: Bool = false
+    @Published var isTutorialPlayBestQuality = true
     @Published var isDocumentPickerPresented: Bool = false
     @Published var isSpatialVideoAvailable: Bool = false
     @Published var shouldPlayInStereo: Bool = true
