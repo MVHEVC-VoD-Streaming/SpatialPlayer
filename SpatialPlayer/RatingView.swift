@@ -67,12 +67,12 @@ struct RatingView: View {
             HStack {
                 Button(action: handleReplay) {
                     HStack {
-                        Image(systemName: "play.fill")
                         Text("Replay")
                     }
                 }
-                Divider()
+                Spacer()
                 Button(action: handleNext) {
+                    Image(systemName: "play.fill")
                     Text("Next")
                 }
                 .alert(isPresented: $showAlert) {
@@ -82,7 +82,8 @@ struct RatingView: View {
                         dismissButton: .default(Text("OK"))
                     )
                 }
-            }
+            }.frame(maxWidth: .infinity)
+                .padding()
         }
     }
     
