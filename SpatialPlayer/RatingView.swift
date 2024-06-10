@@ -85,6 +85,7 @@ struct RatingView: View {
             }.frame(maxWidth: .infinity)
                 .padding()
         }
+        .frame(width: 450)
     }
     
     private func handleReplay() {

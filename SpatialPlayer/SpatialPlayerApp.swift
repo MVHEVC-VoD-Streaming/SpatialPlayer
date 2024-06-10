@@ -21,10 +21,7 @@ struct SpatialPlayerApp: App {
                 .environment(\.contentFont, .system(size: 26))
         }
         .windowStyle(.plain)
-        .windowResizability(.automatic)
 
-
-        
         ImmersiveSpace(id: "PlayerImmersiveSpace") {
             ImmersiveView()
                 .environmentObject(viewModel)
