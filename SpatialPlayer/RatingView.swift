@@ -5,7 +5,7 @@
 //  Created by Bruski on 2024/6/5.
 //
 import SwiftUI
-
+import RealityKit
 
 struct StarRatingView: View {
     @Binding var rating: Int?
@@ -31,6 +31,8 @@ struct StarRatingView: View {
 
 struct RatingView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
+    @Environment(\.presentationMode) private var presentationManager
+    
     @State private var videoQuality: Int?
     @State private var depthQuality: Int?
     @State private var overallExperience: Int?
@@ -83,7 +85,7 @@ struct RatingView: View {
                     )
                 }
             }.frame(maxWidth: .infinity)
-                .padding()
+                .padding(.top, 40)
         }
         .frame(width: 450)
     }
