@@ -19,6 +19,7 @@ struct SpatialPlayerApp: App {
                 .frame(minWidth: 800, minHeight: 400)
                 .environment(\.titleFont, .system(size: 32, weight: .bold))
                 .environment(\.contentFont, .system(size: 26))
+                .persistentSystemOverlays(.hidden)
         }
         .windowStyle(.plain)
 
