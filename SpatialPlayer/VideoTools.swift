@@ -25,6 +25,9 @@ struct VideoTools {
         let fovRadians = fovDegrees * .pi / 180.0
         let halfWidthAtZDistance = zDistance * tan(fovRadians / 2.0) // half of the total screen width
         let scaleFactor = 2.0 * halfWidthAtZDistance
+        print("--- fovDegrees: \(fovDegrees)")
+        print("--- halfWidthAtZDistance: \(halfWidthAtZDistance)")
+        print("--- scaleFactor: \(scaleFactor)")
         return scaleFactor  // scale factor of width, the larger z is, the larger scale is
     }
     
