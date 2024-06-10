@@ -23,6 +23,7 @@ struct StarRatingView: View {
                     .onTapGesture {
                         rating = star
                     }
+                    .hoverEffect(.automatic)
             }
         }
     }
@@ -183,10 +184,10 @@ struct RatingView: View {
     }
 }
 
-//struct RatingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RatingView().environmentObject(PlayerViewModel())
-//            .frame(width: 400, height: 300)
-//    }
-//}
+struct RatingView_Previews: PreviewProvider {
+    static var previews: some View {
+        RatingView().environmentObject(PlayerViewModel())
+            .frame(width: 400, height: 300)
+    }
+}
 
