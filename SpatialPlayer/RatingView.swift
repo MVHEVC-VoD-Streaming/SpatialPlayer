@@ -38,6 +38,8 @@ struct RatingView: View {
     @State private var overallExperience: Int?
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var coverData: CoverData?
+
 
     var currentVideoId: String? {
         if let sessionData = viewModel.sessionData {
@@ -72,6 +74,21 @@ struct RatingView: View {
                         Text("Replay")
                     }
                 }
+                .fullScreenCover(item: $coverData,
+                                 onDismiss: didDismiss) { details in
+                    VStack(spacing: 20) {
+                        if let url = viewModel.currentVideoURL {
+                            VideoPlaybackView(
+                                videoUrl: url,
+                                didPlayToEnd: didPlayToEnd
+                            )
+                        }
+                    }
+                    .onTapGesture {
+                        coverData = nil
+                    }
+                }
+                
                 Spacer()
                 Button(action: handleNext) {
                     Image(systemName: "play.fill")
@@ -92,8 +109,22 @@ struct RatingView: View {
     
     private func handleReplay() {
         viewModel.currentVideoIndex = viewModel.ratingVideoIndex
-        viewModel.appView = AppView.IMMERSIVE_VIEW
-        viewModel.isImmersiveSpaceShown = true
+        guard let videoURL = viewModel.currentVideoURL else {
+            print("No video URL selected")
+            return
+        }
+        viewModel.videoURL = videoURL
+        coverData = CoverData(url: videoURL)
+    }
+    
+    private func didDismiss() {
+        // Handle the dismissing action.
+    }
+    
+    private func didPlayToEnd() {
+        coverData = nil
+        viewModel.ratingVideoIndex = viewModel.currentVideoIndex
+        viewModel.appView = AppView.RATING_VIEW
     }
 
     private func handleNext() {
@@ -188,10 +219,10 @@ struct RatingView: View {
     }
 }
 
-struct RatingView_Previews: PreviewProvider {
-    static var previews: some View {
-        RatingView().environmentObject(PlayerViewModel())
-            .frame(width: 400, height: 300)
-    }
-}
+//struct RatingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RatingView().environmentObject(PlayerViewModel())
+//            .frame(width: 400, height: 300)
+//    }
+//}
 

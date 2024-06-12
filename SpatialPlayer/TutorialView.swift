@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import QuickLook
 
 struct TutorialView: View {
     @EnvironmentObject var viewModel: PlayerViewModel
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var coverData: CoverData?
     
     var currentVideoURL: URL? {
-        if !viewModel.isTutorialPlayBestQuality {
+        if !viewModel.isTutorialPlayBestQuality && viewModel.shouldPlayInStereo {
             return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/kitchen/kitchen@480x480-1M.mov")
+        }
+        if !viewModel.isTutorialPlayBestQuality && !viewModel.shouldPlayInStereo {
+            return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/kitchen/kitchen@480x480-1M.left.mov")
+        }
+        if viewModel.isTutorialPlayBestQuality && !viewModel.shouldPlayInStereo {
+            return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/kitchen/kitchen@2160x2160-30M.left.mov")
         }
         return URL(string: "\(viewModel.serverDomain)/video/user_study_edu/kitchen/kitchen@2160x2160-30M.mov")
     }
@@ -49,6 +57,19 @@ struct TutorialView: View {
                     }
                     .font(.title2)
                 }
+                .fullScreenCover(item: $coverData,
+                                 onDismiss: didDismiss) { details in
+                    VStack(spacing: 20) {
+                        VideoPlaybackView(
+                            videoUrl: details.url,
+                            didPlayToEnd: didPlayToEnd
+                        )
+                    }
+                    .onTapGesture {
+                        coverData = nil
+                    }
+                }
+                
                 Spacer()
                 Button(action: finishTutorial) {
                     Text("Finish")
@@ -63,15 +84,26 @@ struct TutorialView: View {
         .frame(width: 400)
     }
     
+    
+    private func didDismiss() {
+        // Handle the dismissing action.
+    }
+    
+    private func didPlayToEnd() {
+        coverData = nil
+    }
+
+    
     private func playDemoVideo() {
         guard let videoURL = currentVideoURL else {
             print("No video URL selected")
             return
         }
-        viewModel.appView = AppView.IMMERSIVE_VIEW
+        
         viewModel.videoURL = videoURL
-        viewModel.isImmersiveSpaceShown = true
         viewModel.isTutorial = true
+        coverData = CoverData(url: videoURL)
+
     }
     
     private func finishTutorial() {
@@ -83,9 +115,9 @@ struct TutorialView: View {
     }
 }
 
-struct TutorialView_Previews: PreviewProvider {
-    static var previews: some View {
-        TutorialView()
-            .environmentObject(PlayerViewModel())
-    }
-}
+//struct TutorialView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TutorialView()
+//            .environmentObject(PlayerViewModel())
+//    }
+//}

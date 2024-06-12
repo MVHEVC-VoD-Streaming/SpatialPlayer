@@ -21,7 +21,7 @@ struct SpatialPlayerApp: App {
                 .environment(\.contentFont, .system(size: 26))
                 .persistentSystemOverlays(.hidden)
         }
-        .windowStyle(.plain)
+//        .windowStyle(.plain)
 
         ImmersiveSpace(id: "PlayerImmersiveSpace") {
             ImmersiveView()

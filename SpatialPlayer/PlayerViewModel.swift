@@ -54,6 +54,18 @@ class PlayerViewModel: ObservableObject {
         return nil
     }
     
+    
+    var currentVideoURL: URL? {
+//        return URL(string: "\(viewModel.serverDomain)/video/driving/vp-2200x2200.MOV")
+//        return URL(string: "\(viewModel.serverDomain)/video/user_study/driving/driving@2160x2160-30M.mov")
+        if let sessionData = self.sessionData {
+            let item = sessionData.playlist[self.currentVideoIndex]
+            
+            return URL(string: "\(self.serverDomain)\(item.url)")
+        }
+        return nil
+    }
+    
     var hasNextVideo: Bool {
         if self.playlist.count == 0 {
             return false

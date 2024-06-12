@@ -34,21 +34,21 @@ struct ContentView: View {
             }
         }
 //        .controlSize(.large)
-        .onChange(of: viewModel.isImmersiveSpaceShown) { _, newValue in
-            Task {
-                if newValue {
-                    switch await openImmersiveSpace(id: "PlayerImmersiveSpace") {
-                    case .opened:
-                        viewModel.isImmersiveSpaceShown = true
-                    default:
-                        viewModel.isImmersiveSpaceShown = false
-                    }
-                } else {
-                    await dismissImmersiveSpace()
-                    viewModel.isImmersiveSpaceShown = false
-                }
-            }
-        }
+//        .onChange(of: viewModel.isImmersiveSpaceShown) { _, newValue in
+//            Task {
+//                if newValue {
+//                    switch await openImmersiveSpace(id: "PlayerImmersiveSpace") {
+//                    case .opened:
+//                        viewModel.isImmersiveSpaceShown = true
+//                    default:
+//                        viewModel.isImmersiveSpaceShown = false
+//                    }
+//                } else {
+//                    await dismissImmersiveSpace()
+//                    viewModel.isImmersiveSpaceShown = false
+//                }
+//            }
+//        }
         .padding()
     }
 }
