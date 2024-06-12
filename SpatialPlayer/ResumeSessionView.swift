@@ -36,6 +36,8 @@ struct ResumeSessionView: View {
                     dismissButton: .default(Text("OK"))
                 )
             }
+            
+            
         }
         .frame(width: 300, height: 200)
         .padding()
@@ -110,18 +112,18 @@ struct ResumeSessionView: View {
     }
 }
 
-struct ResumeSessoionView_Preview: PreviewProvider {
-    @State static var sessionId = ""
-    @State static var showAlert = false
-    @State static var alertMessage = ""
-    @State static var showResumeModal = false
-
-    static var previews: some View {
-        ResumeSessionView(
-            sessionId: $sessionId,
-            showAlert: $showAlert,
-            alertMessage: $alertMessage,
-            showResumeModal: $showResumeModal
-        ).environmentObject(PlayerViewModel())
-    }
-}
+//struct ResumeSessoionView_Preview: PreviewProvider {
+//    @State static var sessionId = ""
+//    @State static var showAlert = false
+//    @State static var alertMessage = ""
+//    @State static var showResumeModal = false
+//
+//    static var previews: some View {
+//        ResumeSessionView(
+//            sessionId: $sessionId,
+//            showAlert: $showAlert,
+//            alertMessage: $alertMessage,
+//            showResumeModal: $showResumeModal
+//        ).environmentObject(PlayerViewModel())
+//    }
+//}

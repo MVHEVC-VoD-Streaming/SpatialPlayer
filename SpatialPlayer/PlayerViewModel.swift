@@ -31,8 +31,9 @@ class PlayerViewModel: ObservableObject {
     @Published var currentVideoIndex = 0
     @Published var ratingVideoIndex = 0
     @Published var sessionData: SessionDetails?
+    @Published var serverDomain: String = "http://192.168.100.242:3000"
 //    @Published var serverDomain: String = "http://192.168.1.215:3000"
-    @Published var serverDomain: String = "http://192.168.100.160:3000"
+//    @Published var serverDomain: String = "http://192.168.100.160:3000"
 //    @Published var serverDomain: String = "http://10.0.0.184:3000"
     
     var isStereoEnabled: Bool {
