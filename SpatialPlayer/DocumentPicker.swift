@@ -39,7 +39,6 @@ struct DocumentPicker: UIViewControllerRepresentable {
             }
             parent.viewModel.videoURL = selectedURL
             parent.viewModel.currentVideoIndex = 0
-            parent.viewModel.videoURLPlaylist.append(selectedURL)
             parent.viewModel.isDocumentPickerPresented = false
             parent.viewModel.appView = AppView.VIDEO_PREVIEW
 //            parent.viewModel.isImmersiveSpaceShown = true

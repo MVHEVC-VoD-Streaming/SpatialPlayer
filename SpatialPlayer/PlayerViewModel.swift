@@ -30,7 +30,6 @@ class PlayerViewModel: ObservableObject {
     @Published var appView: AppView = AppView.WELCOME
     @Published var currentVideoIndex = 0
     @Published var ratingVideoIndex = 0
-    @Published var videoURLPlaylist: [URL] = []
     @Published var sessionData: SessionDetails?
 //    @Published var serverDomain: String = "http://192.168.1.215:3000"
     @Published var serverDomain: String = "http://192.168.100.160:3000"
@@ -72,5 +71,13 @@ class PlayerViewModel: ObservableObject {
         }
         let nextIndex = self.currentVideoIndex + 1
         return nextIndex >= 0 && nextIndex < self.playlist.count
+    }
+    
+    func reset() {
+        self.videoURL = nil
+        self.appView = AppView.WELCOME
+        self.currentVideoIndex = 0
+        self.ratingVideoIndex = 0
+        self.sessionData = nil
     }
 }
