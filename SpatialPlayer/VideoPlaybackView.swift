@@ -68,7 +68,9 @@ struct VideoPlayerView: UIViewControllerRepresentable {
         print("--- makeUIViewController")
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
-        //            playerViewController.showsPlaybackControls = false
+        playerViewController.showsPlaybackControls = true
+        playerViewController.entersFullScreenWhenPlaybackBegins = true
+        playerViewController.exitsFullScreenWhenPlaybackEnds = true
         return playerViewController
     }
     
