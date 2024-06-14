@@ -47,12 +47,10 @@ struct VideoPreviewView: View {
             .fullScreenCover(item: $coverData,
                              onDismiss: didDismiss) { details in
                 VStack(spacing: 20) {
-                    if let url = viewModel.currentVideoURL {
-                        VideoPlaybackView(
-                            videoUrl: url,
-                            didPlayToEnd: didPlayToEnd
-                        )
-                    }
+                    VideoPlaybackView(
+                        videoUrl: details.url,
+                        didPlayToEnd: didPlayToEnd
+                    )
                 }
                 .onTapGesture {
                     coverData = nil

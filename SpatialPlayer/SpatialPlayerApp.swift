@@ -26,9 +26,9 @@ struct SpatialPlayerApp: App {
         }
 //        .windowStyle(.plain)
 
-        ImmersiveSpace(id: "PlayerImmersiveSpace") {
-            ImmersiveView()
-                .environmentObject(viewModel)
-        }.immersionStyle(selection: .constant(.full), in: .full)
+//        ImmersiveSpace(id: "PlayerImmersiveSpace") {
+//            ImmersiveView()
+//                .environmentObject(viewModel)
+//        }.immersionStyle(selection: .constant(.full), in: .full)
     }
 }
