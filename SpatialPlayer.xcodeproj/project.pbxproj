@@ -16,6 +16,7 @@
 		4C6B91052B72F9B900DF217E /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6B91042B72F9B900DF217E /* PlayerViewModel.swift */; };
 		4CDBB1892B97A21B0062E7CD /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB1882B97A21A0062E7CD /* VideoInfo.swift */; };
 		4CDBB18B2B97A3AE0062E7CD /* CMProjectionType+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB18A2B97A3AE0062E7CD /* CMProjectionType+String.swift */; };
+		B425CDCE2C53E2D9007AA90D /* VideoPlayerMetricMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B425CDCD2C53E2D9007AA90D /* VideoPlayerMetricMonitor.swift */; };
 		B4F2BAB22C1A283E0020860B /* VideoPlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F2BAB12C1A283E0020860B /* VideoPlaybackView.swift */; };
 		CA0E41732C13924E002F1089 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0E41722C13924E002F1089 /* TutorialView.swift */; };
 		CAFF34792C0FA992007FCDCB /* VideoPlaybackControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF34782C0FA992007FCDCB /* VideoPlaybackControl.swift */; };
@@ -40,6 +41,7 @@
 		4C6B91042B72F9B900DF217E /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		4CDBB1882B97A21A0062E7CD /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		4CDBB18A2B97A3AE0062E7CD /* CMProjectionType+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMProjectionType+String.swift"; sourceTree = "<group>"; };
+		B425CDCD2C53E2D9007AA90D /* VideoPlayerMetricMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerMetricMonitor.swift; sourceTree = "<group>"; };
 		B4F2BAB12C1A283E0020860B /* VideoPlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackView.swift; sourceTree = "<group>"; };
 		CA0E41722C13924E002F1089 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CAFF34782C0FA992007FCDCB /* VideoPlaybackControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackControl.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				CAFF348C2C1211D2007FCDCB /* FontConfig.swift */,
 				CA0E41722C13924E002F1089 /* TutorialView.swift */,
 				B4F2BAB12C1A283E0020860B /* VideoPlaybackView.swift */,
+				B425CDCD2C53E2D9007AA90D /* VideoPlayerMetricMonitor.swift */,
 			);
 			path = SpatialPlayer;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				4CDBB18B2B97A3AE0062E7CD /* CMProjectionType+String.swift in Sources */,
 				4C6B91052B72F9B900DF217E /* PlayerViewModel.swift in Sources */,
 				CAFF34812C10D57A007FCDCB /* Models.swift in Sources */,
+				B425CDCE2C53E2D9007AA90D /* VideoPlayerMetricMonitor.swift in Sources */,
 				CAFF348B2C116086007FCDCB /* ResumeSessionView.swift in Sources */,
 				CAFF34852C10E8AC007FCDCB /* EndingView.swift in Sources */,
 				4C5B95782B967DEA003DD53C /* VideoTools.swift in Sources */,
